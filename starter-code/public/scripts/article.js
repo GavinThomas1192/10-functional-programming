@@ -41,9 +41,8 @@ Article.loadAll = rows => {
   // is the transformation of one collection into another. Remember that we can set variables equal to the result
   // of functions. So if we set a variable equal to the result of a .map, it will be our transformed array.
   // There is no need to push to anything.
-  Article.all = rawData.map(article => {
-    new Article(article)
-  });
+  Article.all = rows.map(ele => new Article(ele));
+
   /* OLD forEach():
   rawData.forEach(function(ele) {
   Article.all.push(new Article(ele));
@@ -65,7 +64,7 @@ Article.fetchAll = callback => {
 // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
 Article.numWordsAll = () => {
   return Article.all.map(function(article) {
-    article.body.split(' ').length
+    return article.body.split(' ').length
   }).reduce(function(sum, idx) {
     return sum + idx;
   })
@@ -93,7 +92,7 @@ Article.numWordsByAuthor = () => {
       wordCount: Article.all.filter(function(article) {
         return author === article.author
       }).map(function(article) {
-        article.body.split(' ').length
+        return article.body.split(' ').length
       }).reduce(function(sum, idx) {
         return sum + idx;
       })
