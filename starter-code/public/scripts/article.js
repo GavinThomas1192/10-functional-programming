@@ -64,7 +64,7 @@ Article.fetchAll = callback => {
 // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
 Article.numWordsAll = () => {
   return Article.all.map(function(article) {
-    article.body.split(' ').length
+    return article.body.split(' ').length
   }).reduce(function(sum, idx) {
     return sum + idx;
   })
@@ -92,7 +92,7 @@ Article.numWordsByAuthor = () => {
       wordCount: Article.all.filter(function(article) {
         return author === article.author
       }).map(function(article) {
-        article.body.split(' ').length
+        return article.body.split(' ').length
       }).reduce(function(sum, idx) {
         return sum + idx;
       })
